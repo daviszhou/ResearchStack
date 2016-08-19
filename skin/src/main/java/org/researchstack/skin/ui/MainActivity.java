@@ -231,14 +231,14 @@ public class MainActivity extends BaseActivity
             }
         } catch (RuntimeException e) { //#create alert for user if the phone does nto support bluetooth
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Bluetooth LE not available");
-            builder.setMessage("Sorry, this device does not support Bluetooth LE.");
+            builder.setTitle("Bluetooth not available");
+            builder.setMessage("Sorry, this device does not support bluetooth." +
+                    "Automated tracking will not be enabled.");
             builder.setPositiveButton(android.R.string.ok, null);
             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
                 @Override
-                public void onDismiss(DialogInterface dialog) {;
-                    System.exit(0);
+                public void onDismiss(DialogInterface dialog) {
                 }
 
             });
