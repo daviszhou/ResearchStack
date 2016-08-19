@@ -1,5 +1,9 @@
 package org.researchstack.skin.ui;
 
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -24,6 +28,8 @@ public class SplashActivity extends PinCodeActivity
     {
         super.onDataReady();
         // Init all notifications
+        verifyBluetooth();
+
         sendBroadcast(new Intent(TaskAlertReceiver.ALERT_CREATE_ALL));
 
         DataProvider.getInstance()
@@ -73,5 +79,36 @@ public class SplashActivity extends PinCodeActivity
     private void launchMainActivity()
     {
         startActivity(new Intent(this, MainActivity.class));
+    }
+
+    //Bluetooth Function
+    private void requestBluetooth(){
+        Intent intentRequestBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE); //#create new intent that sends user-mediate bluetooth request
+        startActivity(intentRequestBluetooth); //check usage
+    }
+
+    //Bluetooth Function
+    @TargetApi(17)
+    private void verifyBluetooth() {
+        try {
+            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); //#attaches variable to bluetooth adapter
+            if (!bluetoothAdapter.isEnabled()) {
+                requestBluetooth(); //#if bluetooth is not enabled, launch requestBluetooth method
+            }
+        } catch (RuntimeException e) { //#create alert for user if the phone does nto support bluetooth
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Bluetooth LE not available");
+            builder.setMessage("Sorry, this device does not support Bluetooth LE.");
+            builder.setPositiveButton(android.R.string.ok, null);
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                @Override
+                public void onDismiss(DialogInterface dialog) {;
+                    System.exit(0);
+                }
+
+            });
+            builder.show();
+        }
     }
 }
