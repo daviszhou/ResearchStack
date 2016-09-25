@@ -70,9 +70,15 @@ public class ViewTaskActivity extends PinCodeActivity implements StepCallbacks
         }
 
         task.validateParameters();
+
+        task.onViewChange(Task.ViewChangeType.ActivityCreate, this, currentStep);
     }
 
-    protected Step getCurrentStep()
+    /**
+     * Returns the actual current step being shown.
+     * @return an instance of @Step
+     */
+    public Step getCurrentStep()
     {
         return currentStep;
     }
@@ -164,6 +170,20 @@ public class ViewTaskActivity extends PinCodeActivity implements StepCallbacks
     {
         hideKeyboard();
         super.onPause();
+
+        task.onViewChange(Task.ViewChangeType.ActivityPause, this, currentStep);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        task.onViewChange(Task.ViewChangeType.ActivityResume, this, currentStep);
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        task.onViewChange(Task.ViewChangeType.ActivityStop, this, currentStep);
     }
 
     @Override
