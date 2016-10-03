@@ -163,6 +163,7 @@ public class StepSwitcher extends FrameLayout
                             }
 
                             removeView(currentStep);
+
                         });
             }
         });
