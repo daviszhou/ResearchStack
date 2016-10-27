@@ -1,6 +1,7 @@
 package org.researchstack.skin.task;
 
 import android.content.Context;
+import android.content.Intent;
 
 import org.researchstack.backbone.result.TaskResult;
 import org.researchstack.backbone.step.Step;
@@ -13,6 +14,7 @@ public class SignUpTask extends OnboardingTask
 {
     private boolean hasPasscode;
     private Step inclusionCriteriaStep;
+    private Step beaconProtocolStep; //NEW
 
     public static final int MINIMUM_STEPS = 2;
 
@@ -25,6 +27,8 @@ public class SignUpTask extends OnboardingTask
         // creating here so it has access to context
         inclusionCriteriaStep = UiManager.getInstance().getInclusionCriteriaStep(context);
         inclusionCriteriaStep.setOptional(false);
+        beaconProtocolStep = UiManager.getInstance().getBeaconProtocolStep(context); //NEW
+        beaconProtocolStep.setOptional(false);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class SignUpTask extends OnboardingTask
             }
             else
             {
-                nextStep = getSignUpStep();
+                nextStep = getThankyouStep();
             }
         }
         else if(step.getIdentifier().equals(SignUpPassCodeCreationStepIdentifier))
@@ -70,14 +74,17 @@ public class SignUpTask extends OnboardingTask
             }
             else
             {
-                nextStep = getSignUpStep();
+                nextStep = getThankyouStep();
             }
         }
         else if(step.getIdentifier().equals(SignUpPermissionsStepIdentifier))
         {
+            nextStep = getThankyouStep();
+        }
+        else if(step.getIdentifier().equals(SignUpBeaconProtocolIdentifier))
+        {
             nextStep = getSignUpStep();
         }
-
         return nextStep;
     }
 
@@ -165,9 +172,14 @@ public class SignUpTask extends OnboardingTask
             stepPosition = 3;
 
         }
-        else if(step.getIdentifier().equals(SignUpStepIdentifier))
+        else if(step.getIdentifier().equals(SignUpBeaconProtocolIdentifier)) //NEW
         {
             stepPosition = 4;
+
+        }
+        else if(step.getIdentifier().equals(SignUpStepIdentifier))
+        {
+            stepPosition = 5;
 
         }
 

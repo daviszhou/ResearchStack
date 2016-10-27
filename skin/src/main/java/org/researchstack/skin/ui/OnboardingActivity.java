@@ -40,6 +40,7 @@ public class OnboardingActivity extends PinCodeActivity implements View.OnClickL
     public static final int REQUEST_CODE_SIGN_UP  = 21473;
     public static final int REQUEST_CODE_SIGN_IN  = 31473;
     public static final int REQUEST_CODE_PASSCODE = 41473;
+    public static final int REQUEST_CODE_BEACON_SERVICE = 51473; //TODO confirm that 51473 is not used elsewhere
     private View      pagerFrame;
     private View      pagerContainer;
     private TabLayout tabStrip;

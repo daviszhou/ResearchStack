@@ -7,6 +7,7 @@ import org.researchstack.backbone.task.Task;
 import org.researchstack.backbone.ui.step.body.NotImplementedStepBody;
 import org.researchstack.skin.R;
 import org.researchstack.skin.step.PassCodeCreationStep;
+import org.researchstack.skin.ui.layout.BeaconProtocolStepLayout;
 import org.researchstack.skin.ui.layout.PermissionStepLayout;
 import org.researchstack.skin.ui.layout.SignInStepLayout;
 import org.researchstack.skin.ui.layout.SignUpEligibleStepLayout;
@@ -22,6 +23,7 @@ public abstract class OnboardingTask extends Task
     public static final String SignUpThankYouStepIdentifier          = "ThankYou";
     public static final String SignInStepIdentifier                  = "SignIn";
     public static final String SignUpStepIdentifier                  = "SignUp";
+    public static final String SignUpBeaconProtocolIdentifier        = "BeaconProtocol"; //New
     //    public static final String SignUpGeneralInfoStepIdentifier        = "GeneralInfo";
     //    public static final String SignUpMedicalInfoStepIdentifier        = "MedicalInfo";
     //    public static final String SignUpCustomInfoStepIdentifier         = "CustomInfo";
@@ -40,7 +42,9 @@ public abstract class OnboardingTask extends Task
     private   Step                 customInfoStep;
     private   Step                 permissionsStep;
     private   Step                 thankyouStep;
+    private   Step                 testStep;
     private   Step                 signInStep;
+    private   Step                 beaconProtocolStep; //New
     private boolean eligible                = true;
     private boolean customStepIncluded      = false;
     private boolean permissionScreenSkipped = false;
@@ -81,6 +85,18 @@ public abstract class OnboardingTask extends Task
         return false;
     }
 
+    /*
+    public Step getBeaconProtocolStep()
+    {
+        if(beaconProtocolStep == null)
+        {
+            beaconProtocolStep = new Step(SignUpBeaconProtocolIdentifier);
+            beaconProtocolStep.setStepTitle("Choose Beacon Protocol");
+            beaconProtocolStep.setStepLayoutClass(BeaconProtocolStepLayout.class);
+        }
+    }
+    */
+
     public Step getSignInStep()
     {
         if(signInStep == null)
@@ -102,6 +118,17 @@ public abstract class OnboardingTask extends Task
             //            thankyouStep.setStepLayoutClass(SignUpThankYouStepLayout.class);
         }
         return thankyouStep;
+    }
+
+    public Step getTestStep()
+    {
+        if(testStep == null)
+        {
+            testStep = new Step("Test");
+            testStep.setStepTitle(R.string.rss_thank_you);
+            testStep.setStepLayoutClass(SignUpIneligibleStepLayout.class);
+        }
+        return testStep;
     }
 
     public Step getIneligibleStep()
