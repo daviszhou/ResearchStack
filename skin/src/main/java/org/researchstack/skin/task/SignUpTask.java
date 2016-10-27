@@ -27,8 +27,8 @@ public class SignUpTask extends OnboardingTask
         // creating here so it has access to context
         inclusionCriteriaStep = UiManager.getInstance().getInclusionCriteriaStep(context);
         inclusionCriteriaStep.setOptional(false);
-        beaconProtocolStep = UiManager.getInstance().getBeaconProtocolStep(context); //NEW
-        beaconProtocolStep.setOptional(false);
+        //beaconProtocolStep = UiManager.getInstance().getBeaconProtocolStep(context); //NEW
+        //beaconProtocolStep.setOptional(false);
     }
 
     @Override
