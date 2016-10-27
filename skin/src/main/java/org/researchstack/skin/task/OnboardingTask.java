@@ -7,7 +7,6 @@ import org.researchstack.backbone.task.Task;
 import org.researchstack.backbone.ui.step.body.NotImplementedStepBody;
 import org.researchstack.skin.R;
 import org.researchstack.skin.step.PassCodeCreationStep;
-import org.researchstack.skin.ui.layout.BeaconProtocolStepLayout;
 import org.researchstack.skin.ui.layout.PermissionStepLayout;
 import org.researchstack.skin.ui.layout.SignInStepLayout;
 import org.researchstack.skin.ui.layout.SignUpEligibleStepLayout;
