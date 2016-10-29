@@ -27,8 +27,8 @@ public class SignUpTask extends OnboardingTask
         // creating here so it has access to context
         inclusionCriteriaStep = UiManager.getInstance().getInclusionCriteriaStep(context);
         inclusionCriteriaStep.setOptional(false);
-        //beaconProtocolStep = UiManager.getInstance().getBeaconProtocolStep(context); //NEW
-        //beaconProtocolStep.setOptional(false);
+        beaconProtocolStep = UiManager.getInstance().getBeaconProtocolStep(context); //NEW
+        beaconProtocolStep.setOptional(false);
     }
 
     @Override
@@ -38,8 +38,16 @@ public class SignUpTask extends OnboardingTask
 
         if(step == null)
         {
+            nextStep = beaconProtocolStep;
+        }
+        else if(step.getIdentifier().equals(SignUpBeaconProtocolIdentifier))
+        {
             nextStep = inclusionCriteriaStep;
         }
+//        if(step == null)
+//        {
+//            nextStep = inclusionCriteriaStep;
+//        }
         else if(step.getIdentifier().equals(SignUpInclusionCriteriaStepIdentifier))
         {
             if(UiManager.getInstance().isInclusionCriteriaValid(result.getStepResult(step.getIdentifier())))
@@ -63,7 +71,7 @@ public class SignUpTask extends OnboardingTask
             }
             else
             {
-                nextStep = getThankyouStep();
+                nextStep = inclusionCriteriaStep;
             }
         }
         else if(step.getIdentifier().equals(SignUpPassCodeCreationStepIdentifier))
@@ -74,14 +82,14 @@ public class SignUpTask extends OnboardingTask
             }
             else
             {
-                nextStep = getThankyouStep();
+                nextStep = inclusionCriteriaStep;
             }
         }
         else if(step.getIdentifier().equals(SignUpPermissionsStepIdentifier))
         {
-            nextStep = getThankyouStep();
+            nextStep = inclusionCriteriaStep;
         }
-        else if(step.getIdentifier().equals(SignUpBeaconProtocolIdentifier))
+        else if(step.getIdentifier().equals(SignUpInclusionCriteriaStepIdentifier))
         {
             nextStep = getSignUpStep();
         }
