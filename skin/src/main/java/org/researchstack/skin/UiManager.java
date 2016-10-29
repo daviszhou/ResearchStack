@@ -46,7 +46,7 @@ public abstract class UiManager
     /**
      * All ActionItems returned by this method should define a title, icon, and class. These
      * ActionItems are used to populate an ActionBar in the main Activity, so the class should be
-     * that of activity (either SettingsActivity & LearnActivity or your own items)
+     * that of activity (either SettingsActivity and LearnActivity or your own items)
      *
      * @return a list of ActionItems for display in the MainActivity ActionBar
      */
@@ -78,9 +78,28 @@ public abstract class UiManager
      * #getInclusionCriteriaStep(Context)}.
      *
      * @param result StepResult object that contains the answers of the InclusionCriteria step
-     * @return true if the user is elligible for the study
+     * @return true if the user is eligible for the study
      */
     public abstract boolean isInclusionCriteriaValid(StepResult result);
+
+    /**
+     * Used in onboarding to hide the "skip consent" button. Override this if you want to allow the
+     * user to get to the main portion of the app without signing up for the study and consenting.
+     * All data will still be collected and uploaded when the user successfully signs up for the
+     * first time Defaults to false.
+     *
+     * @return true if consent is skippable
+     */
+    public abstract Step getBeaconProtocolStep(Context context); //NEW
+
+    /**
+     * Method used by the framework to ask the user the result of {@link
+     * #getBeaconProtocolStep(Context)}.
+     *
+     * @param result StepResult object that contains the answers of the BeaconProtocol step
+     * @return string stating the type of beacon scanning protocol the user has chosen
+     */
+    public abstract String processBeaconProtocolSelection(StepResult result);
 
     /**
      * Used in onboarding to hide the "skip consent" button. Override this if you want to allow the
