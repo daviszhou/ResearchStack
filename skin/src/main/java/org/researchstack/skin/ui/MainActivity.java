@@ -101,6 +101,8 @@ public class MainActivity extends BaseActivity
         super.onNewIntent(intent);
         LogExt.d(getClass(), "onNewIntent");
 
+        //TODO candidate location to initiate beacon monitoring service
+
         handleNotificationIntent(intent);
     }
 
