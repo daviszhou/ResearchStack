@@ -50,6 +50,12 @@
         %2$s
     </string>
 
+    <!-- External Devices/Beacons -->
+    <string name="rss_devices">External Devices</string>
+    <string name="rss_devices_setup_ready">You are ready to set up beacon scanning!</string>
+    <string name="rss_devices_tap_below">Touch “NEXT” below to start detecting bluetooth beacons.
+    </string>
+
     <!-- Sign In / Up -->
     <string name="rss_sign_up">Sign Up</string>
     <string name="rss_password">Password</string>
