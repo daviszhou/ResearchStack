@@ -14,7 +14,7 @@ public class SignUpTask extends OnboardingTask
 {
     private boolean hasPasscode;
     private Step inclusionCriteriaStep;
-    private Step beaconProtocolStep; //NEW
+    private Step deviceStep; //NEW
 
     public static final int MINIMUM_STEPS = 2;
 
@@ -27,8 +27,8 @@ public class SignUpTask extends OnboardingTask
         // creating here so it has access to context
         inclusionCriteriaStep = UiManager.getInstance().getInclusionCriteriaStep(context);
         inclusionCriteriaStep.setOptional(false);
-        beaconProtocolStep = UiManager.getInstance().getBeaconProtocolStep(context); //NEW
-        beaconProtocolStep.setOptional(false);
+        deviceStep = UiManager.getInstance().getDeviceStep(context); //NEW
+        deviceStep.setOptional(false);
     }
 
     @Override
@@ -38,9 +38,13 @@ public class SignUpTask extends OnboardingTask
 
         if(step == null)
         {
-            nextStep = beaconProtocolStep;
+            nextStep = deviceStep;
         }
-        else if(step.getIdentifier().equals(SignUpBeaconProtocolIdentifier))
+        else if(step.getIdentifier().equals(SignUpDeviceIdentifier))
+        {
+            nextStep = getBeaconStep(); //New
+        }
+        else if(step.getIdentifier().equals(SignUpStartBeaconScanningIdentifier))
         {
             nextStep = inclusionCriteriaStep;
         }
@@ -180,7 +184,7 @@ public class SignUpTask extends OnboardingTask
             stepPosition = 3;
 
         }
-        else if(step.getIdentifier().equals(SignUpBeaconProtocolIdentifier)) //NEW
+        else if(step.getIdentifier().equals(SignUpDeviceIdentifier)) //TODO update with correct order
         {
             stepPosition = 4;
 

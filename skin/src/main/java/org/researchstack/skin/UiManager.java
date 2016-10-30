@@ -90,16 +90,16 @@ public abstract class UiManager
      *
      * @return true if consent is skippable
      */
-    public abstract Step getBeaconProtocolStep(Context context); //NEW
+    public abstract Step getDeviceStep(Context context); //NEW
 
     /**
      * Method used by the framework to ask the user the result of {@link
-     * #getBeaconProtocolStep(Context)}.
+     * #getDeviceStep(Context)}.
      *
      * @param result StepResult object that contains the answers of the BeaconProtocol step
      * @return string stating the type of beacon scanning protocol the user has chosen
      */
-    public abstract String processBeaconProtocolSelection(StepResult result);
+    public abstract String processDeviceSelection(StepResult result);
 
     /**
      * Used in onboarding to hide the "skip consent" button. Override this if you want to allow the

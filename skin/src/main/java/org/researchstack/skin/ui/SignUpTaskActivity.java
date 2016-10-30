@@ -22,6 +22,7 @@ import org.researchstack.skin.R;
 import org.researchstack.skin.TaskProvider;
 import org.researchstack.skin.task.OnboardingTask;
 import org.researchstack.skin.ui.layout.SignUpEligibleStepLayout;
+import org.researchstack.skin.beacondevice.BeaconMonitorService;
 
 public class SignUpTaskActivity extends ViewTaskActivity implements ActivityCallback
 {
@@ -80,6 +81,14 @@ public class SignUpTaskActivity extends ViewTaskActivity implements ActivityCall
         Intent intent = ConsentTaskActivity.newIntent(this,
                 TaskProvider.getInstance().get(TaskProvider.TASK_ID_CONSENT));
         startActivityForResult(intent, SignUpEligibleStepLayout.CONSENT_REQUEST);
+    }
+
+    @Override
+    public void startBeaconMonitorService()
+    {
+        Intent intent = new Intent(this, BeaconMonitorService.class);
+        startService(intent);
+        showNextStep();
     }
 
     @Override

@@ -5,4 +5,6 @@ public interface ActivityCallback
 
     @Deprecated
     public void startConsentTask();
+
+    public void startBeaconMonitorService();
 }
